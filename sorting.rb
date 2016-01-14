@@ -55,47 +55,37 @@ end
 
 
 
-# function mergeSort(array) {
-#     // if the array is one element long, just return it
-
-#     // mergeSort() the left half of the array
-
-#     // mergeSort() the right half of the array
-
-#     // merge() the two halves
-
-#     // return the merged array
-# }
+def merge_sort(array)
+  return array if array.length == 1
+  left = merge_sort(array[0..array.length/2-1])
+  right = merge_sort(array[array.length/2..-1])
+  return merge(left, right)
+end
 
 
 # function merge(leftArr, rightArr){
 def merge(left_arr, right_arr)
 #     // var newArr = [];
-    new_arr = []
+  new_arr = []
 #     // compare leftArr[0] and rightArr[0]
 #     // whichever is smaller, push it onto newArr
-    until left_arr.empty? && right_arr.empty?
-        if left_arr.empty?
-            right_arr.each {|item| new_arr << item}
-            return new_arr
-        elsif right_arr.empty?
-            left_arr.each {|item| new_arr << item}
-            return new_arr
-        end  
-        if left_arr[0] < right_arr[0]
-            new_arr << left_arr.shift
-        else
-            new_arr << right_arr.shift
-        end
+  until left_arr.empty? && right_arr.empty?
+    if left_arr.empty?
+      right_arr.each {|item| new_arr << item}
+      return new_arr
+    elsif right_arr.empty?
+      left_arr.each {|item| new_arr << item}
+      return new_arr
     end
-    new_arr
+    if left_arr[0] < right_arr[0]
+      new_arr << left_arr.shift
+    else
+      new_arr << right_arr.shift
+    end
+  end
+  new_arr
 end
-#     // repeat the process, but don't reuse elements,
-#     // until you have pushed all the elements from
-#     // leftArr and rightArr onto newArr in sorted order
 
-#     // return newArr
-# }
-
-p merge([1,2,3,4], [5,6,7,8])
-p merge([5,6,7,8], [1,2,3,4])
+#p merge([5,6,7,8], [1,2,3])
+#puts merge_sort( [1,3,7,2,5] ).inspect
+#puts merge_sort( [7,5,9, 13,-1,0]).inspect
